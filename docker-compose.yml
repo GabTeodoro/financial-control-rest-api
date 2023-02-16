@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  postgres-db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_DB: "financialcontrol"
+      TZ: "America/Sao_Paulo"
+    ports:
+      - 15432:5432
+    networks:
+      - newnetwork
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@mail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+      TZ: "America/Sao_Paulo"
+    networks:
+      - newnetwork
+    ports:
+      - 16543:80
+    depends_on:
+      - postgres-db
+    restart: always
+
+networks:
+  newnetwork:
+    driver: bridge
