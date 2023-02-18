@@ -22,7 +22,7 @@ public class IncomeController {
     private CreateIncome create;
     private FindIncomes find;
     private UpdateIncome update;
-//    private DeleteIncome delete;
+    private DeleteIncome delete;
 
     @PostMapping
     public ResponseEntity<ResponseMessage> create(@RequestBody IncomeDTO incomeDTO){
@@ -44,9 +44,9 @@ public class IncomeController {
         return update.execute(id, incomeDTO);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<ResponseMessage> delete(@PathVariable Long id) {
-//        return delete.execute(id);
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponseMessage> delete(@PathVariable Long id) {
+        return delete.execute(id);
+    }
 
 }
