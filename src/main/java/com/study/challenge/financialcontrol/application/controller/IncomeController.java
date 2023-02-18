@@ -21,7 +21,7 @@ public class IncomeController {
 
     private CreateIncome create;
     private FindIncomes find;
-//    private UpdateIncome update;
+    private UpdateIncome update;
 //    private DeleteIncome delete;
 
     @PostMapping
@@ -39,11 +39,11 @@ public class IncomeController {
         return find.execute(id);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<ResponseMessage> update(@PathVariable Long id, @RequestBody IncomeDTO incomeDTO) {
-//        return update.execute(id, incomeDTO);
-//    }
-//
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseMessage> update(@PathVariable Long id, @RequestBody IncomeDTO incomeDTO) {
+        return update.execute(id, incomeDTO);
+    }
+
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<ResponseMessage> delete(@PathVariable Long id) {
 //        return delete.execute(id);

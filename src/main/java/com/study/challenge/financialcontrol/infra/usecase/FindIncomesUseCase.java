@@ -31,12 +31,12 @@ public class FindIncomesUseCase implements FindIncomes {
     public ResponseEntity execute(Long id) {
 
         Optional<Income> optionalIncome = repository.findIncomeById(id);
-        Income income = optionalIncome.get();
 
-        if(income == null) {
-            throw new RuntimeException(id + "NOT FOUND!");
+        if(optionalIncome.isEmpty()) {
+            throw new RuntimeException(id + " NOT FOUND!");
         }
 
+        Income income = optionalIncome.get();
         IncomeDTO incomeDTO = mapper.toDTO(income);
         return ResponseEntity.ok(incomeDTO);
     }
