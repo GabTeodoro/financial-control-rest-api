@@ -12,13 +12,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/income")
 @AllArgsConstructor
 public class IncomeController {
 
     private CreateIncome create;
-//    private FindIncomes find;
+    private FindIncomes find;
 //    private UpdateIncome update;
 //    private DeleteIncome delete;
 
@@ -27,16 +29,16 @@ public class IncomeController {
         return create.execute(incomeDTO);
     }
 
-//    @GetMapping
-//    public ResponseEntity<Page<IncomeDTO>> listAll(Pageable pageable) {
-//        return find.execute(pageable);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<IncomeDTO> findById(@PathVariable Long id) {
-//        return find.execute(id);
-//    }
-//
+    @GetMapping
+    public ResponseEntity<List<IncomeDTO>> listAll() {
+        return find.execute();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<IncomeDTO> findById(@PathVariable Long id) {
+        return find.execute(id);
+    }
+
 //    @PutMapping("/{id}")
 //    public ResponseEntity<ResponseMessage> update(@PathVariable Long id, @RequestBody IncomeDTO incomeDTO) {
 //        return update.execute(id, incomeDTO);

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,8 +22,8 @@ public class IncomeRepositoryImp implements IncomeRepository {
     }
 
     @Override
-    public Page<Income> listAllIncomes(Pageable page) {
-        return jpa.findAll(page);
+    public List<Income> listAllIncomes() {
+        return jpa.findAll();
     }
 
     @Override

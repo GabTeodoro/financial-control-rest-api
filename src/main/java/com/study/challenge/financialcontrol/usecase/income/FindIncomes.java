@@ -5,6 +5,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface FindIncomes {
 
-    ResponseEntity execute(Pageable pageable);
+    ResponseEntity execute();
     ResponseEntity execute(Long id);
 }
