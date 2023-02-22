@@ -7,8 +7,6 @@ import com.study.challenge.financialcontrol.usecase.income.DeleteIncome;
 import com.study.challenge.financialcontrol.usecase.income.FindIncomes;
 import com.study.challenge.financialcontrol.usecase.income.UpdateIncome;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
