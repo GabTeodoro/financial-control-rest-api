@@ -3,10 +3,9 @@ package com.study.challenge.financialcontrol.infra.repository;
 import com.study.challenge.financialcontrol.domain.entity.Expense;
 import com.study.challenge.financialcontrol.domain.port.ExpenseRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,8 +20,8 @@ public class ExpenseRepositoryImp implements ExpenseRepository {
     }
 
     @Override
-    public Page<Expense> listAllExpenses(Pageable page) {
-        return jpa.findAll(page);
+    public List<Expense> listAllExpenses() {
+        return jpa.findAll();
     }
 
     @Override

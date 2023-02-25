@@ -8,10 +8,9 @@ import com.study.challenge.financialcontrol.usecase.expense.FindExpenses;
 import com.study.challenge.financialcontrol.usecase.expense.UpdateExpense;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/expense")
@@ -19,13 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExpenseController {
 
     private CreateExpense create;
-//    private FindExpenses find;
+    private FindExpenses find;
 //    private UpdateExpense update;
 //    private DeleteExpense delete;
 
     @PostMapping
     public ResponseEntity<ResponseMessage> create(@RequestBody ExpenseDTO expenseDTO) {
         return create.execute(expenseDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ExpenseDTO>> listAll() {
+        return find.execute();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ExpenseDTO> findById(@PathVariable Long id) {
+        return find.execute(id);
     }
 
 }
