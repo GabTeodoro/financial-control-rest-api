@@ -19,7 +19,7 @@ public class ExpenseController {
 
     private CreateExpense create;
     private FindExpenses find;
-//    private UpdateExpense update;
+    private UpdateExpense update;
 //    private DeleteExpense delete;
 
     @PostMapping
@@ -35,6 +35,12 @@ public class ExpenseController {
     @GetMapping("/{id}")
     public ResponseEntity<ExpenseDTO> findById(@PathVariable Long id) {
         return find.execute(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseMessage> update(@PathVariable Long id,
+                                                  @RequestBody ExpenseDTO expenseDTO) {
+        return update.execute(id, expenseDTO);
     }
 
 }
