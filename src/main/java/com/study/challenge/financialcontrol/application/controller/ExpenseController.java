@@ -20,7 +20,7 @@ public class ExpenseController {
     private CreateExpense create;
     private FindExpenses find;
     private UpdateExpense update;
-//    private DeleteExpense delete;
+    private DeleteExpense delete;
 
     @PostMapping
     public ResponseEntity<ResponseMessage> create(@RequestBody ExpenseDTO expenseDTO) {
@@ -41,6 +41,11 @@ public class ExpenseController {
     public ResponseEntity<ResponseMessage> update(@PathVariable Long id,
                                                   @RequestBody ExpenseDTO expenseDTO) {
         return update.execute(id, expenseDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponseMessage> delete(@PathVariable Long id) {
+        return delete.execute(id);
     }
 
 }
