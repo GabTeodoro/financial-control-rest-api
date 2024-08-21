@@ -9,9 +9,9 @@ services:
       POSTGRES_DB: "financialcontrol"
       TZ: "America/Sao_Paulo"
     ports:
-      - 15432:5432
+      - "5432:5432"
     networks:
-      - newnetwork
+      - financial-control-network
     restart: always
 
   pgadmin:
@@ -22,13 +22,28 @@ services:
       PGADMIN_DEFAULT_PASSWORD: "admin"
       TZ: "America/Sao_Paulo"
     networks:
-      - newnetwork
+      - financial-control-network
     ports:
-      - 16543:80
+      - "16543:80"
     depends_on:
       - postgres-db
     restart: always
 
+  financial-control:
+    image: gbsteodoro/financial-control-rest-api:latest
+    container_name: financial-control
+    environment:
+      DB_HOST: postgres-db
+      DB_PORT: 5432
+      DB_USERNAME: admin
+      DB_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    networks:
+        - financial-control-network
+    depends_on:
+      - postgres-db
+
 networks:
-  newnetwork:
+  financial-control-network:
     driver: bridge
