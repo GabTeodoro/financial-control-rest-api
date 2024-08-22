@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financial-control
+  labels:
+    app: financial-control
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: financial-control
+  template:
+    metadata:
+      name: financial-control
+      labels:
+        app: financial-control
+    spec:
+      containers:
+        - name: financial-control
+          image: gbsteodoro/financial-control-rest-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: postgresql-service
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USERNAME
+              value: admin
+            - name: DB_PASSWORD
+              value: admin
+      restartPolicy: Always
+      
