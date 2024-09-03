@@ -63,6 +63,34 @@ kubectl exec -it <pod-name> -- /bin/bash
 2. In the cloud
    http://<node-ip>:30007/swagger-ui/index.html#
 
+## Test of Scalability
+1. Apply the Horizontal Pod Autoscaler (HPA)
+```bash
+kubectl apply -f app-hpa.yaml
+```
+2. Apply the metrics server
+```bash
+kubectl apply -f metrics.yaml
+```
+3. Check if the HPA is created
+```bash
+kubectl get hpa
+```
+4. Choose a pod to test the scalability
+```bash
+kubectl exec -it <pod-name>  -- /bin/bash
+```
+5. Run the stress test
+```bash
+stress -c 10
+```
+6. Check the HPA again
+```bash
+kubectl get hpa
+```
+
+
+
 ## Delete the resources
 1. Delete a resource
 ```bash
