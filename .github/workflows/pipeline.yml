@@ -2,9 +2,9 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - develop
 
 jobs:
   build:
@@ -45,3 +45,31 @@ jobs:
 
       - name: Push Docker image latest version
         run: docker push gbsteodoro/financial-control-rest-api:latest
+
+  deploy-STG:
+    needs: publish
+    runs-on: ubuntu-latest
+
+    environment:
+      name: STG
+
+    if: github.ref == 'refs/heads/develop'
+    steps:
+      - name: Deploy to STG
+        shell: bash
+        run: |
+          echo "Deploying to STG environment"
+
+  deploy-Prod:
+    needs: publish
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Prod
+
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Deploy to Prod
+        shell: bash
+        run: |
+          echo "Deploying to Production environment"
